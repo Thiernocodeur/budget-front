@@ -34,7 +34,7 @@ const BudgetSummary = () => {
           <p className="text-lg font-semibold">Revenu Total</p>
         </div>
         <div className="p-4">
-          <p className="text-2xl font-bold">${summary.totalIncome.toFixed(2)}</p>
+          <p className="text-2xl font-bold">{summary.totalIncome.toFixed(2)} CFA</p>
         </div>
       </div>
       
@@ -44,7 +44,7 @@ const BudgetSummary = () => {
           <p className="text-lg font-semibold">Dépenses Totales</p>
         </div>
         <div className="p-4">
-          <p className="text-2xl font-bold">${summary.totalExpense.toFixed(2)}</p>
+          <p className="text-2xl font-bold">{summary.totalExpense.toFixed(2)} CFA</p>
         </div>
       </div>
       
@@ -54,7 +54,7 @@ const BudgetSummary = () => {
           <p className="text-lg font-semibold">Budget Restant</p>
         </div>
         <div className="p-4">
-          <p className="text-2xl font-bold">${summary.remainingBudget.toFixed(2)}</p>
+          <p className="text-2xl font-bold">{summary.remainingBudget.toFixed(2)} CFA</p>
         </div>
       </div>
     </div>
