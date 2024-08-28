@@ -3,18 +3,25 @@ import axios from 'axios';
 
 const AddExpenseForm = ({ onClose, onAddExpense }) => {
   const [title, setTitle] = useState('');
-  const [amount, setAmount] = useState('');
+  const [montant, setMontant] = useState('');
   const [date, setDate] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // Vérification que le montant est supérieur à zéro
+    if (parseFloat(montant) <= 0) {
+      setError('Le montant doit être supérieur à zéro.');
+      return;
+    }
+
     try {
       // Envoyer les données du formulaire à l'API
       const response = await axios.post('http://localhost:3000/expense', {
         title,
-        amount: parseFloat(amount),
-        date
+        montant: parseFloat(montant),
+        date,
       });
 
       // Appeler onAddExpense pour mettre à jour la liste des dépenses
@@ -22,10 +29,17 @@ const AddExpenseForm = ({ onClose, onAddExpense }) => {
         onAddExpense(response.data);
       }
 
+      // Réinitialiser les champs du formulaire après l'ajout
+      setTitle('');
+      setMontant('');
+      setDate('');
+      setError('');
+
       // Fermer le formulaire après l'ajout
       onClose();
     } catch (error) {
       console.error('Erreur lors de l\'ajout de la dépense:', error);
+      setError('Une erreur s\'est produite lors de l\'ajout de la dépense.');
     }
   };
 
@@ -33,6 +47,7 @@ const AddExpenseForm = ({ onClose, onAddExpense }) => {
     <div className="fixed inset-0 bg-gray-700 bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
         <h2 className="text-xl font-semibold mb-4">Ajouter Dépense</h2>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block">Titre</label>
@@ -48,8 +63,8 @@ const AddExpenseForm = ({ onClose, onAddExpense }) => {
             <label className="block">Montant</label>
             <input
               type="number"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              value={montant}
+              onChange={(e) => setMontant(e.target.value)}
               className="border p-2 w-full"
               required
             />

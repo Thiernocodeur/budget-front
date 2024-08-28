@@ -92,7 +92,7 @@ function App() {
             {expenses.map((expense) => (
               <tr key={expense.id} className="border-b">
                 <td className="py-3 px-4">{expense.title}</td>
-                <td className="py-3 px-4">{expense.amount} F CFA</td>
+                <td className="py-3 px-4">{expense.montant} F CFA</td>
                 <td className="py-3 px-4">
                   <button
                     onClick={() => handleDeleteExpense(expense.id)}
@@ -134,7 +134,7 @@ function App() {
             {incomes.map((income) => (
               <tr key={income.id} className="border-b">
                 <td className="py-3 px-4">{income.titre}</td> {/* Afficher le 'titre' */}
-                <td className="py-3 px-4">{income.amount} F CFA</td>
+                <td className="py-3 px-4">{income.montant} F CFA</td>
                 <td className="py-3 px-4">
                   <button
                     onClick={() => handleDeleteIncome(income.id)}

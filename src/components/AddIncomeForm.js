@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const AddIncomeForm = ({ onClose, onAddIncome }) => {
-  const [titre, setTitre] = useState(''); // Modifier 'source' en 'titre'
-  const [amount, setAmount] = useState('');
+  const [titre, setTitre] = useState(''); // Utiliser 'titre'
+  const [montant, setMontant] = useState(''); // Utiliser 'montant'
   const [date, setDate] = useState('');
 
   const handleSubmit = async (e) => {
@@ -12,8 +12,8 @@ const AddIncomeForm = ({ onClose, onAddIncome }) => {
     try {
       // Envoyer les données du formulaire à l'API
       const response = await axios.post('http://localhost:3000/income', {
-        titre, // Utiliser 'titre' au lieu de 'source'
-        amount: parseFloat(amount),
+        titre, // Utiliser 'titre'
+        montant: parseFloat(montant), // Utiliser 'montant'
         date
       });
 
@@ -35,7 +35,7 @@ const AddIncomeForm = ({ onClose, onAddIncome }) => {
         <h2 className="text-xl font-semibold mb-4">Ajouter Revenu</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block">Titre</label> {/* Modifier 'Source' en 'Titre' */}
+            <label className="block">Titre</label>
             <input
               type="text"
               value={titre}
@@ -48,8 +48,8 @@ const AddIncomeForm = ({ onClose, onAddIncome }) => {
             <label className="block">Montant</label>
             <input
               type="number"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              value={montant}
+              onChange={(e) => setMontant(e.target.value)}
               className="border p-2 w-full"
               required
             />
