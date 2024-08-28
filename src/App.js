@@ -231,20 +231,26 @@ function App() {
         </table>
       </div>
 
-      {/* Formulaires d'ajout */}
       {showAddExpenseForm && (
-        <AddExpenseForm onSave={handleAddExpense} onClose={() => setShowAddExpenseForm(false)} />
-      )}
-      {showAddIncomeForm && (
-        <AddIncomeForm onSave={handleAddIncome} onClose={() => setShowAddIncomeForm(false)} />
+        <AddExpenseForm
+          onAddExpense={handleAddExpense}
+          onClose={() => setShowAddExpenseForm(false)}
+        />
       )}
 
-      {/* Formulaire de mise à jour */}
+      {showAddIncomeForm && (
+        <AddIncomeForm
+          onAddIncome={handleAddIncome}
+          onClose={() => setShowAddIncomeForm(false)}
+        />
+      )}
+
       {showUpdateForm && (
         <UpdateTransaction
-          transaction={selectedTransaction}
-          onUpdate={handleUpdateTransaction}
+          transactionId={selectedTransaction.id}
+          type={selectedTransaction.type}
           onClose={() => setShowUpdateForm(false)}
+          onUpdateTransaction={handleUpdateTransaction}
         />
       )}
     </div>
