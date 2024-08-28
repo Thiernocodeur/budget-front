@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const AddExpenseForm = ({ onClose, onAddExpense }) => {
-  const [title, setTitle] = useState('');
+  const [titre, setTitre] = useState('');
   const [montant, setMontant] = useState('');
   const [date, setDate] = useState('');
   const [error, setError] = useState('');
@@ -19,7 +19,7 @@ const AddExpenseForm = ({ onClose, onAddExpense }) => {
     try {
       // Envoyer les données du formulaire à l'API
       const response = await axios.post('http://localhost:3000/expense', {
-        title,
+        titre,         // Remplacer title par titre
         montant: parseFloat(montant),
         date,
       });
@@ -30,7 +30,7 @@ const AddExpenseForm = ({ onClose, onAddExpense }) => {
       }
 
       // Réinitialiser les champs du formulaire après l'ajout
-      setTitle('');
+      setTitre('');
       setMontant('');
       setDate('');
       setError('');
@@ -53,8 +53,8 @@ const AddExpenseForm = ({ onClose, onAddExpense }) => {
             <label className="block">Titre</label>
             <input
               type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={titre}    // Remplacer title par titre
+              onChange={(e) => setTitre(e.target.value)}
               className="border p-2 w-full"
               required
             />

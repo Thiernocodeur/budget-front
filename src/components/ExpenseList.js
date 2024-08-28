@@ -7,7 +7,7 @@ const ExpenseList = ({ expenses, onDeleteExpense }) => {
       <ul>
         {expenses.map(exp => (
           <li key={exp.id}>
-            {exp.title} - {exp.montant} - {exp.date}
+            {exp.titre} - {exp.montant} - {exp.date}
             <button onClick={() => onDeleteExpense(exp.id)}>Supprimer</button>
           </li>
         ))}
